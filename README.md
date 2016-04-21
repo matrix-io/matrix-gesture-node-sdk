@@ -1,5 +1,5 @@
 # Matrix Gesture Node SDK
-![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/tree/master/examples/logo.png "Gesture.ai Logo")
+![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/examples/logo.png "Gesture.ai Logo")
 
 A high performance C++ library with node bindings to easily incorporate gesture recognition into any project. It uses a trained object detection method (with over 100,000 samples per gesture!) and is therefore robust to different skin colors and lighting changes. 
 
@@ -7,9 +7,9 @@ For the initial release the SDK is only linux compatible, but it can be extended
 
 There are currently three detectable gestures: open PALM, THUMB UP, and FIST. Tracking options are available so it can track changes between hands. Smoothing filters are available so fine control can be used.
 
-![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/tree/master/examples/palm.jpg "Palm")
-![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/tree/master/examples/fist.jpg "Fist")
-![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/tree/master/examples/thumb_up.jpg "Thumb Up")
+![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/examples/palm.jpg "Palm")
+![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/examples/fist.jpg "Fist")
+![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/examples/thumb_up.jpg "Thumb Up")
 
 ### Dependences:
 Linux
@@ -43,8 +43,7 @@ It will return a `JSON` object with the location (both center (xc,yc) and top le
 
 ```{
   "results":
-    [
-      {
+    [{
         "hand_type":0,
         "height":184,
         "id":5,
@@ -53,8 +52,7 @@ It will return a `JSON` object with the location (both center (xc,yc) and top le
         "xc":273,
         "y":196,
         "yc":288
-      }
-    ]
+      }]
 }```
 
 For those running mac/windows, you would have to create a VirtualBox running linux to be able to access the camera from docker. Docker-engine runs a basic linux that doesn't recognize the camera. Docker is currently beta testing their new mac/windows docker which will be compatible with this library and you will be able to access your camera. Alternatively you can run detection through a node server in the node SDK where you can access it through `localhost:3000` in a browser. 
@@ -72,7 +70,7 @@ As long as you have the required dependencies enter the node sdk and run:
 Run some examples! `node examples/handTracker.js` or `npm run start-test-server`
 
 ### Documentation
-The documentation can be found [here](gesture.ai/#/develop "Gesture.ai Documentation")
+The documentation can be found [here](http://gesture.ai/#/develop "Gesture.ai Documentation")
 
 ### Community
-Visit and join our community [here](community.gesture.ai "Gesture.ai Community")
+Visit and join our community [here](http://community.gesture.ai "Gesture.ai Community")
