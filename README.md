@@ -63,9 +63,13 @@ For those running mac/windows, you would have to create a VirtualBox running lin
 
 ### Using without Docker
 
-As long as you have the required dependencies enter the node sdk and run:
+As long as you have the required dependencies enter the node sdk directory and run:
 
 ```npm install && npm run setup```
+
+or if you are root
+
+```npm install && npm run-root-setup```
 
 Run some examples! 
 
