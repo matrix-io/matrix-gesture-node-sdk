@@ -93,6 +93,7 @@ OBJS := \
 	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/uniqueness2.o \
 	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/motiondetector.o \
 	$(obj).target/$(TARGET)/src/gesture_manager.o \
+	$(obj).target/$(TARGET)/src/gesture_manager_impl.o \
 	$(obj).target/$(TARGET)/src/gesture_recognition.o
 
 # Add to the list of files we specially track dependencies for.

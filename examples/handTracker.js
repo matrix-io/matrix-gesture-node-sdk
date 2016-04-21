@@ -9,7 +9,7 @@ gesture.setShow(true);
 gesture.setFrameFlip(true);
 
 
-gesture.runTracking([Gesture.PALM, Gesture.THUMB_UP, Gesture.PINCH]);
+gesture.detectTrackStream([Gesture.PALM, Gesture.THUMB_UP, Gesture.FIST]);
 
 
 //events

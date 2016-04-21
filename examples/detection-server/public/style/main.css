@@ -1,0 +1,41 @@
+canvas{
+	display: none;
+}
+
+.box {
+	width: 100px;
+	height: 100px;
+	border:3px solid #FFFFFF;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+}
+
+#results {
+    color: gray;
+    font-family: helvetica;
+    padding: 2px 29px;
+    width: 608px;
+}
+
+#scroll {
+	    height: 600px;
+	    overflow: auto;
+	    width: 608px;
+	    float: left;
+}
+
+#scrollThis {
+    color: gray;
+    font-family: helvetica;
+    height: 600px;
+    overflow: scroll;
+    padding: 2px 29px;
+    width: 208px;
+    float:left;
+}
+
+
+video, #results{
+	float: left;
+}

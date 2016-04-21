@@ -27,12 +27,6 @@ Release/obj.target/gesture/src/gesture_recognition.o: \
  ../node_modules/nan/nan_persistent_12_inl.h \
  ../node_modules/nan/nan_weak.h ../node_modules/nan/nan_object_wrap.h \
  ../node_modules/nan/nan_typedarray_contents.h ../src/gesture_manager.h \
- ../admobilize-detection-manager/lib/pico/facedetect.hpp \
- ../admobilize-detection-manager/lib/pico/constants.hpp \
- ../admobilize-detection-manager/lib/pico/motiondetector.hpp \
- ../admobilize-detection-manager/lib/pico/uniqueness2.hpp \
- ../admobilize-detection-manager/lib/pico/facedetect.hpp \
- ../admobilize-detection-manager/lib/pico/posedetector.h \
  ../src/libs/json.hpp
 ../src/gesture_recognition.cpp:
 ../src/gesture_recognition.hpp:
@@ -65,10 +59,4 @@ Release/obj.target/gesture/src/gesture_recognition.o: \
 ../node_modules/nan/nan_object_wrap.h:
 ../node_modules/nan/nan_typedarray_contents.h:
 ../src/gesture_manager.h:
-../admobilize-detection-manager/lib/pico/facedetect.hpp:
-../admobilize-detection-manager/lib/pico/constants.hpp:
-../admobilize-detection-manager/lib/pico/motiondetector.hpp:
-../admobilize-detection-manager/lib/pico/uniqueness2.hpp:
-../admobilize-detection-manager/lib/pico/facedetect.hpp:
-../admobilize-detection-manager/lib/pico/posedetector.h:
 ../src/libs/json.hpp:
