@@ -12,20 +12,20 @@ There are currently three detectable gestures: open PALM, THUMB UP, and FIST. Tr
 ![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/examples/thumb_up.jpg "Thumb Up")
 
 ### Dependences:
-Linux
-OpenCV 3.1.0
-Node 0.12+
+Linux, 
+OpenCV 3.1.0, 
+Node 0.12+, 
 JSON
 
 ## Examples (with Docker)
 
 As it is currently only linux compatible we have created an image on DockerHub which includes all required dependencies. If you would like to build the Dockerfile yourself it is included in the repository.
 
-First give root access to Docker as an X server. This will allow the camera feed to be accessed.
+* First give root access to Docker as an X server. This will allow the camera feed to be accessed.
 
 ```xhost local:root```
 
-Download the image and create and run a daemon container, giving it access to your default camera and a port through which to host a webserver. 
+* Download the image and create and run a daemon container, giving it access to your default camera and a port through which to host a webserver. 
 
 ```sudo docker run -itd -p 8080:8080 -p 3000:3000 --privileged \
 -name gesture \
@@ -33,7 +33,7 @@ Download the image and create and run a daemon container, giving it access to yo
 -v /tmp/.X11-unix:/tmp/.X11-unix \
 -e DISPLAY=$DISPLAY admobilize/gesture```
 
-Execute a command inside the docker, to run a node sample `handTracker.js`
+* Execute a command inside the docker, to run the node sample `handTracker.js`
 
 ```sudo docker exec -it gesture /bin/sh -c 'cd ~/matrix-gesture-node-sdk/; examples/handTracker.js'```
 
@@ -67,7 +67,9 @@ As long as you have the required dependencies enter the node sdk and run:
 
 ```npm install && npm run setup```
 
-Run some examples! `node examples/handTracker.js` or `npm run start-test-server`
+Run some examples! 
+
+`node examples/handTracker.js` or `npm run start-test-server`
 
 ### Documentation
 The documentation can be found [here](http://gesture.ai/#/develop "Gesture.ai Documentation")
