@@ -1,6 +1,5 @@
  
 'use strict';
-
 window.onload  = function(argument){
 
 
@@ -61,7 +60,7 @@ window.onload  = function(argument){
    }
 
 
-   setInterval(snapshot, 50);
+   setInterval(snapshot, 20);
  }
 
  function errorCallback(error) {
@@ -69,7 +68,6 @@ window.onload  = function(argument){
  }
 
  navigator.getUserMedia(constraints, successCallback, errorCallback);
-
 
  function snapshot(){
  	if (localMediaStream) {
