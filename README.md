@@ -32,11 +32,13 @@ As it is currently only linux compatible we have created an image on DockerHub u
 
 * Download the image and create and run a daemon container, giving it access to your default camera and a port through which to host a webserver. 
 
-```sudo docker run -itd -p 8080:8080 -p 3000:3000 --privileged \
+```
+sudo docker run -itd -p 8080:8080 -p 3000:3000 --privileged \
 -name gesture \
 -v /dev/video0:/dev/video0 \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
--e DISPLAY=$DISPLAY admobilize/gesture```
+-e DISPLAY=$DISPLAY admobilize/gesture
+```
 
 * Execute a command inside the docker, to run the node sample `handTracker.js`
 
@@ -46,7 +48,8 @@ As it is currently only linux compatible we have created an image on DockerHub u
 
 It will return a `JSON` object with the location (both center (xc,yc) and top left corner (x,y)), size, hand type, and unique id.
 
-```{
+```
+{
   "results":
     [{
         "hand_type":0,
@@ -58,7 +61,8 @@ It will return a `JSON` object with the location (both center (xc,yc) and top le
         "y":196,
         "yc":288
       }]
-}```
+}
+```
 
 For those running mac/windows, you would have to create a VirtualBox running linux to be able to access the camera from docker. Docker-engine runs a basic linux that doesn't recognize the camera. Docker is currently beta testing their new mac/windows docker which will be compatible with this library and you will be able to access your camera. Alternatively you can run detection through a node server in the node SDK where you can access it through `localhost:3000` in a browser. 
 
