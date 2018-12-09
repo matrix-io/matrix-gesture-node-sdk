@@ -73,6 +73,8 @@ For those running mac/windows, you would have to create a VirtualBox running lin
 #### P.S 
  1. Err fix
  
+    Error response from daemon: Conflict.
+ 
     1-1. Stop a running gesture container:
     
      ```docker stop gesture```
