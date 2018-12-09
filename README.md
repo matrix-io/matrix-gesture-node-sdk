@@ -71,8 +71,10 @@ For those running mac/windows, you would have to create a VirtualBox running lin
 (We have had some permission problems with google chrome and safari blocking the server on mac, but firefox works fine)
 
 #### P.S 
- 1. docker rename gestrue.
- 
+ 1. docker remove gestrue.
+    
+     ```docker rm gesture```
+    or
      ```docker rm -f gestrue```
  
  2. webcam in VirtualBox Guest OS on Windows Host. 
