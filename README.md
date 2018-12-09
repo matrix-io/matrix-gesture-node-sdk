@@ -71,10 +71,14 @@ For those running mac/windows, you would have to create a VirtualBox running lin
 (We have had some permission problems with google chrome and safari blocking the server on mac, but firefox works fine)
 
 #### P.S 
- 1. docker remove gestrue.
+ 1. Err fix
+ 
+    1-1. Stop a running gesture container:
     
-     ```docker rm gesture```
-    or
+     ```docker stop gesture```
+ 
+    1-2.  Force remove a running gestrue container:
+  
      ```docker rm -f gestrue```
  
  2. webcam in VirtualBox Guest OS on Windows Host. 
