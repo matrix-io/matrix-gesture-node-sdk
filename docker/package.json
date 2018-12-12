@@ -28,6 +28,6 @@
     "nan": "^2.1.0",
     "node-getopt": ">=0.2.3",
     "node-gyp": "^3.8.0",
-    "node-pre-gyp": "^0.12.0"
+    "node-pre-gyp": "^0.6.7"
   }
 }
