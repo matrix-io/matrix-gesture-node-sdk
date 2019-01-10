@@ -8,9 +8,9 @@ var gesture = new Gesture.detector();
 
 // Certificate
 const fs = require('fs');
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/ai.bzcentre.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/ai.bzcentre.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/ai.bzcentre.com/fullchain.pem', 'utf8');
+const privateKey = fs.readFileSync('YOUR_KEY_PATH/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('YOUR_KEY_PATH/cert.pem', 'utf8');
+const ca = fs.readFileSync('YOUR_KEY_PATH/fullchain.pem', 'utf8');
 
 const credentials = {
 	key: privateKey,
