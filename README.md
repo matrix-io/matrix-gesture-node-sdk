@@ -109,7 +109,20 @@ or if you are root
 
 ```npm install && npm run-root-setup```
 
-Run some examples! 
+### Note for gesture detection over video stream
+1. A secure channel is required for the video stream, i.e. https. You'll need to get/configure the Nodejs ssl key pair.
+2. The keys path are specified in file examples/detection-server/server.js
+ ```
+const privateKey = fs.readFileSync('YOUR_KEY_PATH/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('YOUR_KEY_PATH/cert.pem', 'utf8');
+const ca = fs.readFileSync('YOUR_KEY_PATH/fullchain.pem', 'utf8');
+```
+3. check if the port for https (3000 in this example) is allowed to access from the firewall.
+4. start the server by run the following command:
+
+ ``` npm run start-test-server ```
+ 
+Run some other examples! 
 
 `node examples/handTracker.js` or `npm run start-test-server`
 
