@@ -120,7 +120,13 @@ const ca = fs.readFileSync('YOUR_KEY_PATH/fullchain.pem', 'utf8');
 3. check if the port for https (3000 in this example) is allowed to access from the firewall.
 4. start the server by run the following command:
 
- ``` npm run start-test-server ```
+  ``` npm run start-test-server ```
+  
+5. You'll see message ``` listening on *:3000```
+6. Launch your browser and access the web page at https://YOUR_DOMAIN:3000
+7. You should be able to see the page as below:
+
+![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/docker/examples/gestureAI.png "Test over Video Stream")
  
 Run some other examples! 
 
