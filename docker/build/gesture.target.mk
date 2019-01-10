@@ -90,14 +90,10 @@ INCS_Release := \
 
 OBJS := \
 	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/facedetect.o \
-	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/motiondetector.o \
-	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/picornt.o \
 	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/uniqueness2.o \
+	$(obj).target/$(TARGET)/admobilize-detection-manager/lib/pico/motiondetector.o \
 	$(obj).target/$(TARGET)/src/gesture_manager.o \
 	$(obj).target/$(TARGET)/src/gesture_manager_impl.o \
-	$(obj).target/$(TARGET)/src/curl_handler.o \
-	$(obj).target/$(TARGET)/src/drawing.o \
-	$(obj).target/$(TARGET)/src/sha1.o \
 	$(obj).target/$(TARGET)/src/gesture_recognition.o
 
 # Add to the list of files we specially track dependencies for.
@@ -151,8 +147,7 @@ LIBS := \
 	-lopencv_ml \
 	-lopencv_imgproc \
 	-lopencv_flann \
-	-lopencv_core \
-	-lcurl
+	-lopencv_core
 
 $(obj).target/gesture.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(obj).target/gesture.node: LIBS := $(LIBS)

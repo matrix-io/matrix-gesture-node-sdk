@@ -19,7 +19,7 @@ canvas{
 }
 
 #scroll {
-	    height: 600px;
+	    height: 300px;
 	    overflow: auto;
 	    width: 608px;
 	    float: left;
@@ -28,7 +28,7 @@ canvas{
 #scrollThis {
     color: gray;
     font-family: helvetica;
-    height: 600px;
+    height: 300px;
     overflow: scroll;
     padding: 2px 29px;
     width: 208px;
