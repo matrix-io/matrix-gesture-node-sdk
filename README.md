@@ -126,7 +126,7 @@ const ca = fs.readFileSync('YOUR_KEY_PATH/fullchain.pem', 'utf8');
 6. Launch your browser and access the web page at https://YOUR_DOMAIN:3000
 7. You should be able to see the page as below:
 
-![alt text](https://github.com/matrix-io/matrix-gesture-node-sdk/raw/master/docker/examples/gestureAI.png "Test over Video Stream")
+![alt text](https://github.com/dfeng99/matrix-gesture-node-sdk/raw/master/docker/examples/gestureAI.png "Test over Video Stream")
  
 Run some other examples! 
 
