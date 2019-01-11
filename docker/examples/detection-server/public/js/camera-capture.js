@@ -81,7 +81,7 @@ window.onload  = function(argument){
  	console.log('navigator.getUserMedia error: ', error);
  }
 
- navigator.getUserMedia(constraints, successCallback, errorCallback);
+ navigator.mediaDevices.getUserMedia(constraints, successCallback, errorCallback);
 
 
  function snapshot(){
