@@ -7,8 +7,7 @@ Release/obj.target/gesture/src/gesture_manager.o: \
  ../admobilize-detection-manager/lib/pico/motiondetector.hpp \
  ../admobilize-detection-manager/lib/pico/uniqueness2.hpp \
  ../admobilize-detection-manager/lib/pico/facedetect.hpp \
- ../admobilize-detection-manager/lib/pico/posedetector.h \
- ../src/curl_handler.h ../src/sha1.h ../src/libs/json.hpp
+ ../admobilize-detection-manager/lib/pico/posedetector.h
 ../src/gesture_manager.cpp:
 ../src/gesture_manager.h:
 ../src/gesture_manager_impl.h:
@@ -18,6 +17,3 @@ Release/obj.target/gesture/src/gesture_manager.o: \
 ../admobilize-detection-manager/lib/pico/uniqueness2.hpp:
 ../admobilize-detection-manager/lib/pico/facedetect.hpp:
 ../admobilize-detection-manager/lib/pico/posedetector.h:
-../src/curl_handler.h:
-../src/sha1.h:
-../src/libs/json.hpp:

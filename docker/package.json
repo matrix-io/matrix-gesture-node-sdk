@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm install examples/detection-server/ && sudo cp -r classifiers /usr/local/bin/",
+    "root-setup": "npm install examples/detection-server && cp -r classifiers /usr/local/bin/",
+    "build-test-server": "npm install examples/detection-server/ ",
+    "start-test-server": "node examples/detection-server/server.js "  
+},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/admobilize/admobilize-gesture.git"

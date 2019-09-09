@@ -9,15 +9,15 @@ var binding = require(binding_path);
 
 var GestureRecognition = binding.GestureRecognition;
 var processRunning = false;
-var stopProccess = false;
+var stopProcess = false;
 var self;
 var Gesture = function(camera) {
   self = this;
-	if(typeof camera !== "undefined"){
-		this.gestureRecognition = new GestureRecognition(camera);
-	}else{
-		this.gestureRecognition = new GestureRecognition();
-	}
+  if(typeof camera !== "undefined"){
+    this.gestureRecognition = new GestureRecognition(camera);
+  }else{
+    this.gestureRecognition = new GestureRecognition();
+  }
 
 };
 
@@ -26,104 +26,109 @@ util.inherits(Gesture, events.EventEmitter);
 
 
 
-Gesture.prototype.runDetection = function(type){
+Gesture.prototype.detectStream = function(type){
   processRunning = true;
   self.detect(type, function(error, response){
-  	 if(error){
-  	 	self.emit('error', error);
-  	 	processRunning = false;
-  	 	self.emit('stop');
-  	 }else{
-  	 	self.emit('frame', response);
-  	 	if(!stopProccess){
-  	 	  self.runDetection(type);
-      }else{
-      	stopProccess = true;
-      	processRunning = false;
-      	self.emit('stop');
-      }
-    }  
-  });   
+    if(error){
+     self.emit('error', error);
+     processRunning = false;
+     self.emit('stop');
+   }else{
+     self.emit('frame', response);
+     if(!stopProcess){
+       self.detectStream(type);
+     }else{
+       stopProcess = true;
+       processRunning = false;
+       self.emit('stop');
+     }
+   }  
+ });   
 }
 
 
 
-Gesture.prototype.runTracking = function(types) {
+Gesture.prototype.detectTrackStream = function(types) {
   processRunning = true;
- 	this.gestureRecognition.trackingDetect(types, function(error, response){
-  	 if(error){
-  	 	self.emit('error', error);
-  	 	processRunning = false;
-  	 	self.emit('stop');
-  	 }else{
-  	 	self.emit('frame', response);
-  	 	if(!stopProccess){
-        self.runTracking(types);
-  	 	}else{
-  	 		stopProccess = false;
-  	 		processRunning = false;
-  	 		self.emit('stop');
-  	 	}
-  	 	
-  	 }
-  });   
+  this.gestureRecognition.trackingDetect(types, function(error, response){
+    if(error){
+     self.emit('error', error);
+     processRunning = false;
+     self.emit('stop');
+   }else{
+     self.emit('frame', response);
+     if(!stopProcess){
+      self.detectTrackStream(types);
+    }else{
+      stopProcess = false;
+      processRunning = false;
+      self.emit('stop');
+    }
+
+  }
+});   
 }
 
 
 
 Gesture.prototype.detect = function(buffer, type, callback) {
 
-if(typeof (type) == 'function'){
-	callback = type;
-  type = buffer;
-  this.gestureRecognition.detect(type, callback);
+  if(typeof (type) == 'function'){
+   callback = type;
+   type = buffer;
+   this.gestureRecognition.detect(type, function(error, response){
+     var response = JSON.parse(response);
+    if(response.results){
+     self.emit('detection', response.results)
+   }
+   callback(error, response);
+ });
    
  }else{
 
-	 this.gestureRecognition.detect(buffer, type, callback);
- } 
+  this.gestureRecognition.detect(buffer, type, function(error, response){
+   var response = JSON.parse(response);
+    if(response.results){
+     self.emit('detection', response.results)
+   }
+   callback(error, response);
+ });
+} 
 
 }
 
 
-Gesture.prototype.trackingDetect = function(buffer, types, callback) {
+Gesture.prototype.detectTrack = function(buffer, types, callback) {
 
 
-if(typeof types === "function"){
-  callback = types;
-  types  = buffer;
-	this.gestureRecognition.trackingDetect(types, function(error, response){
+  if(typeof types === "function"){
+    callback = types;
+    types  = buffer;
+    this.gestureRecognition.trackingDetect(types, function(error, response){
+        var response = JSON.parse(response);
       if(response.results){
-         self.emit('detection', response.results)
-      }
-      callback();
-  });
- }else{
-  this.gestureRecognition.trackingDetect(buffer, types, function(error, response){
+       self.emit('detection', response.results)
+     }
+     callback(error, response);
+   });
+  }else{
+    this.gestureRecognition.trackingDetect(buffer, types, function(error, response){
+    var response = JSON.parse(response);
       if(response.results){
-         self.emit('detection', response.results)
-      }
-      callback();
-  });
- } 
+       self.emit('detection', response.results)
+     }
+     callback(error, response);
+   });
+  } 
 
 }
 
-
-
-function onDetectResponse(error, result){
- if(result.results){
-   self.emit('detection', results);
-
- }
-
-}
 
 Gesture.prototype.stop = function(){
 	if(processRunning){
-     stopProccess = true;
-     self.stopVideoCapture();
-	}
+   stopProcess = true;
+   self.stopVideoCapture();
+ }
 }
 
 
@@ -164,10 +169,6 @@ Gesture.prototype.setKalman = function(kalman) {
 }
 
 
-Gesture.prototype.setDataSubmit = function(dataSubmit) {
- this.gestureRecognition.setDataSubmit(dataSubmit);
-}
-
 Gesture.prototype.detectionQuality = function(detectionQuality) {
  this.gestureRecognition.detectionQuality(detectionQuality);
 }
@@ -181,7 +182,7 @@ Gesture.prototype.stopVideoCapture = function() {
 
 module.exports = {
 	PALM : 0,
-	PINCH : 1,
+	FIST : 1,
 	THUMB_UP : 2,
 	detector: Gesture
 };

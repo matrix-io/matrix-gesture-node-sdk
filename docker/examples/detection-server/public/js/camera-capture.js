@@ -1,5 +1,6 @@
  
 'use strict';
+
 window.onload  = function(argument){
 
 
@@ -8,7 +9,12 @@ window.onload  = function(argument){
 	var ctx = canvas.getContext('2d');
 	var localMediaStream = null;
 	var socket = io();
-  var resultsContent =  document.getElementById('results');
+  	var resultsContent =  document.getElementById('results');
+
+	var para0 = document.createElement("P");                       // Create a <p> node
+	var t0 = document.createTextNode("Detecting ...");      // Create a text node
+	para0.appendChild(t0);                                          // Append the text to <p>
+	resultsContent.appendChild(para0);      
 
 	socket.on('detection', function(results){
 	  console.log('client,results:', results);
@@ -23,6 +29,7 @@ window.onload  = function(argument){
 	  		)
 
 	  }
+
 	  var boxHeight = (results[0].yc)/4.8;
 	  player.setVolume(boxHeight);
 	  setTimeout(function() {
@@ -34,40 +41,48 @@ window.onload  = function(argument){
           }, 1000);
 
 
-	  //var para = document.createElement("P");                       // Create a <p> node
-	  //var t = document.createTextNode(JSON.stringify(results));      // Create a text node
-	  //para.appendChild(t);                                          // Append the text to <p>
-	  //resultsContent.appendChild(para);      
+	  var para = document.createElement("P");                       // Create a <p> node
+	  var t = document.createTextNode(JSON.stringify(results));      // Create a text node
+	  para.appendChild(t);                                          // Append the text to <p>
+	  // resultsContent.appendChild(para);      
+	  resultsContent.prepend(para);      
 	});
 
-	navigator.getUserMedia = navigator.getUserMedia ||
+	// navigator.getUserMedia = navigator.getUserMedia ||
+	// navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+	navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia ||
 	navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
 	var localMediaStream = null;
 	var constraints = {
 		audio: false,
 		video: true
 	};
+
 	var video = document.querySelector('video');
 	var dataURL;
 	function successCallback(stream) {
-  window.stream = stream; // stream available to console
-  //record(stream);
-  localMediaStream = stream;
-  if (window.URL) {
-  	video.src = window.URL.createObjectURL(stream);
-   } else {
-   	video.src = stream;
-   }
+ 		console.log('navigator.mediaDevices.getUserMedia success!', stream);
+		window.stream = stream; // stream available to console
+		//record(stream);
+		localMediaStream = stream;
+		if (window.URL) {
+			// video.src = window.URL.createObjectURL(stream);
+			video.srcObject = stream;
+		} else {
+			video.srcObject = stream;
+		}
 
 
-   setInterval(snapshot, 20);
- }
+	setInterval(snapshot, 50);
+}
 
  function errorCallback(error) {
  	console.log('navigator.getUserMedia error: ', error);
  }
 
- navigator.getUserMedia(constraints, successCallback, errorCallback);
+ navigator.mediaDevices.getUserMedia(constraints, successCallback, errorCallback);
+
 
  function snapshot(){
  	if (localMediaStream) {
@@ -76,10 +91,6 @@ window.onload  = function(argument){
  		socket.emit('frame', dataURL);
  	}
  }
-
- 
-
-
 }
 
 // 2. This code loads the IFrame Player API code asynchronously.

@@ -32,11 +32,13 @@ As it is currently only linux compatible we have created an image on DockerHub u
 
 * Download the image and create and run a daemon container, giving it access to your default camera and a port through which to host a webserver. 
 
-```sudo docker run -itd -p 8080:8080 -p 3000:3000 --privileged \
--name gesture \
+```
+sudo docker run -itd -p 8080:8080 -p 3000:3000 --privileged \
+--name gesture \
 -v /dev/video0:/dev/video0 \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
--e DISPLAY=$DISPLAY admobilize/gesture```
+-e DISPLAY=$DISPLAY admobilize/gesture
+```
 
 * Execute a command inside the docker, to run the node sample `handTracker.js`
 
@@ -46,7 +48,8 @@ As it is currently only linux compatible we have created an image on DockerHub u
 
 It will return a `JSON` object with the location (both center (xc,yc) and top left corner (x,y)), size, hand type, and unique id.
 
-```{
+```
+{
   "results":
     [{
         "hand_type":0,
@@ -58,7 +61,8 @@ It will return a `JSON` object with the location (both center (xc,yc) and top le
         "y":196,
         "yc":288
       }]
-}```
+}
+```
 
 For those running mac/windows, you would have to create a VirtualBox running linux to be able to access the camera from docker. Docker-engine runs a basic linux that doesn't recognize the camera. Docker is currently beta testing their new mac/windows docker which will be compatible with this library and you will be able to access your camera. Alternatively you can run detection through a node server in the node SDK where you can access it through `localhost:3000` in a browser. 
 
@@ -66,6 +70,35 @@ For those running mac/windows, you would have to create a VirtualBox running lin
 
 (We have had some permission problems with google chrome and safari blocking the server on mac, but firefox works fine)
 
+#### P.S 
+ 1. Err fix
+ 
+    Error response from daemon: Conflict.
+ 
+    1-1. Stop a running gesture container:
+    
+     ```docker stop gesture```
+ 
+    1-2.  Force remove a running gestrue container:
+  
+     ```docker rm -f gestrue```
+ 
+ 2. webcam in VirtualBox Guest OS on Windows Host. 
+    https://reurl.cc/rQGAN
+    
+    Windows Host
+    
+    2-1. Install 'Oracle VM VirtualBox Extrnsion Pack'.
+    
+    2-2. open cmd.
+    
+      ```cd c:\Program Files\Oracle\VirtualBox```
+      
+    2-3. open VirtualBox.
+    
+      ```VboxManage controlvm "Ubuntu16" webcam attach .1```
+      
+      *Replace "Ubuntu16" with your guest OS name.
 ### Using without Docker
 
 As long as you have the required dependencies enter the node sdk directory and run:
@@ -76,7 +109,26 @@ or if you are root
 
 ```npm install && npm run-root-setup```
 
-Run some examples! 
+### Note for gesture detection over video stream
+1. A secure channel is required for the video stream, i.e. https. You'll need to get/configure the Nodejs ssl key pair.
+2. The keys path are specified in file examples/detection-server/server.js
+ ```
+const privateKey = fs.readFileSync('YOUR_KEY_PATH/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('YOUR_KEY_PATH/cert.pem', 'utf8');
+const ca = fs.readFileSync('YOUR_KEY_PATH/fullchain.pem', 'utf8');
+```
+3. check if the port for https (3000 in this example) is allowed to access from the firewall.
+4. start the server by run the following command:
+
+  ``` npm run start-test-server ```
+  
+5. You'll see message ``` listening on *:3000```
+6. Launch your browser and access the web page at https://YOUR_DOMAIN:3000
+7. You should be able to see the page as below:
+
+![alt text](https://github.com/dfeng99/matrix-gesture-node-sdk/raw/master/docker/examples/gestureAI.png "Test over Video Stream")
+ 
+Run some other examples! 
 
 `node examples/handTracker.js` or `npm run start-test-server`
 
